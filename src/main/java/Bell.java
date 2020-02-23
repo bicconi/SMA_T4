@@ -1,6 +1,7 @@
 /* Bell Class*/
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
@@ -17,7 +18,7 @@ public class Bell extends Thread{
 
     public Bell(int index) throws UnsupportedAudioFileException, IOException, LineUnavailableException{
         // index is order of alarm
-        String fileName = "/sounds/Alarm" + index + ".wav";
+        String fileName = "/Alarm" + index + ".wav";
         InputStream audioSrc = getClass().getResourceAsStream(fileName);
         InputStream bufferedIn = new BufferedInputStream(audioSrc);
         try{
@@ -30,10 +31,10 @@ public class Bell extends Thread{
             Thread.currentThread().interrupt();
             /* [sonarqube][Vuln #14] */
             // IDE Test
-            /*
+
             System.out.println(getClass().getResource("").getPath()+"sounds/Alarm"+index+".wav");
             audioInputStream = AudioSystem.getAudioInputStream(new File(getClass().getResource("").getPath()+"sounds/Alarm"+index+".wav"));
-            */
+
         }
         clip = AudioSystem.getClip();
         clip.open(audioInputStream);
